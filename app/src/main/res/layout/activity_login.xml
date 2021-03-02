@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@drawable/connecticon"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Email"
+            android:layout_margin="4dp"
+            android:padding="10dp"
+        android:inputType="textEmailAddress"
+            android:id="@+id/loginemail"
+            android:background="@drawable/editext_background"
+            />
+        <widget.Space
+            android:layout_width="0dp"
+            android:layout_height="10dp"/>
+        <EditText
+            android:layout_margin="4dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Password"
+            android:id="@+id/loginpass"
+            android:background="@drawable/editext_background"
+            />
+        <widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:id="@+id/loginmain"
+            android:layout_margin="10dp"
+            android:background="@drawable/button_background"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="New to Instagram ? Register"
+            android:id="@+id/signin"
+            android:layout_marginTop="10dp"/>
+
+
+    </LinearLayout>
+</ScrollView>
