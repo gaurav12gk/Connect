@@ -24,7 +24,7 @@ import com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import Adapter.UserAdapter;
+import com.example.instagramcclone.Adapter.UserAdapter;
 
 
 public class SearchFragment extends Fragment {
