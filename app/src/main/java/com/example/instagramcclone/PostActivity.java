@@ -140,4 +140,9 @@ return MimeTypeMap.getSingleton().getExtensionFromMimeType(this.getContentResolv
         }
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 }

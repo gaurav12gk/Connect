@@ -4,56 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
-    android:gravity="center">
+    android:gravity="center"
+    tools:context=".LoginActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:src="@drawable/connecticon"/>
+
+            android:src="@drawable/connectlogolast" />
+
         <EditText
+            android:id="@+id/loginemail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Email"
             android:layout_margin="4dp"
-            android:padding="10dp"
-        android:inputType="textEmailAddress"
-            android:id="@+id/loginemail"
             android:background="@drawable/editext_background"
-            />
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="10dp" />
+
         <widget.Space
             android:layout_width="0dp"
-            android:layout_height="10dp"/>
+            android:layout_height="10dp" />
+
         <EditText
-            android:layout_margin="4dp"
-            android:padding="10dp"
+            android:id="@+id/loginpass"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Password"
-            android:id="@+id/loginpass"
+            android:layout_margin="4dp"
             android:background="@drawable/editext_background"
-            />
+            android:hint="Password"
+            android:padding="10dp" />
+
         <widget.Space
             android:layout_width="wrap_content"
-            android:layout_height="10dp"/>
+            android:layout_height="10dp" />
+
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginmain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LOGIN"
-            android:id="@+id/loginmain"
             android:layout_margin="10dp"
-            android:background="@drawable/button_background"/>
+            android:background="@drawable/button_background"
+            android:text="LOGIN" />
+
         <TextView
+            android:id="@+id/signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="New to Instagram ? Register"
-            android:id="@+id/signin"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:text="New to Instagram ? Register" />
 
 
     </LinearLayout>

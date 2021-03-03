@@ -37,10 +37,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button_follow"
-        android:textColor="@color/design_default_color_primary_dark"
         android:layout_alignParentEnd="true"
-        android:backgroundTint="@color/colorAccent"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_centerVertical="true"
         android:visibility="gone"/>
+
 
 </RelativeLayout>

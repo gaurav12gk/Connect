@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,6 +58,31 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         if (user.getID().equals(firebaseUser.getUid())) {
             holder.btnfollow.setVisibility(View.GONE);
         }
+
+        // FOLLOW-> FOllowing and putting in firebase who is following whom and who has whose follower
+        holder.btnfollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 if(holder.btnfollow.getText().toString().equals("Follow")){
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid()).child("following")
+                            .child(user.getID()).setValue(true);
+
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getID()).child("follower")
+                            .child(firebaseUser.getUid()).setValue(true);
+
+
+                }else{
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid()).child("following")
+                            .child(user.getID()).removeValue();
+
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getID()).child("follower")
+                            .child(firebaseUser.getUid()).removeValue();
+
+
+                }
+            }
+        });
+
     }
 
     private void isfollowed(final String id, final Button btnfollow) {

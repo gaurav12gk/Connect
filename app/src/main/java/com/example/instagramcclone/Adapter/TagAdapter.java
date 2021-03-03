@@ -34,8 +34,8 @@ private List<String> mTags;
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-holder.tag.setText(mTags.get(position));
-holder.noOfPosts.setText(mTags.get(position));
+holder.tag.setText("# "+mTags.get(position));
+holder.noOfPosts.setText(mTagcount.get(position)+"posts");
     }
 
     @Override
@@ -52,6 +52,12 @@ holder.noOfPosts.setText(mTags.get(position));
             tag=itemView.findViewById(R.id.tagdetail);
             noOfPosts=itemView.findViewById(R.id.nofpost);
         }
+    }
+    public void filter(List<String> filterTags,List<String>filterTagsCount){
+        this.mTags=filterTags;
+        this.mTagcount=filterTagsCount;
+        notifyDataSetChanged();
+
     }
 
 }
