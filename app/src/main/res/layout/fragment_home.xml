@@ -20,7 +20,7 @@
              <ImageView
                  android:layout_width="match_parent"
                  android:layout_height="30dp"
-                 android:src="@drawable/connecticon"
+                 android:src="@drawable/connectlogolast"
                  android:layout_alignParentStart="true"
                  android:layout_marginStart="20dp"/>
              <ImageView
@@ -38,7 +38,21 @@
         android:layout_width="match_parent"
         android:layout_below="@+id/appbar"
         android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerview_story"/>
+                android:layout_margin="5dp"/>
 
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerview_post"
+                android:layout_margin="5dp"/>
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </RelativeLayout>
