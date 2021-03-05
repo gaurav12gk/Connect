@@ -70,6 +70,7 @@ public class CommentActivity extends AppCompatActivity {
                     Toast.makeText(CommentActivity.this, "Comment is Empty!", Toast.LENGTH_SHORT).show();
            else{
                putcomment();
+                    addComment.setText(null);
                 }
             }
         });
