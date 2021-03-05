@@ -1,6 +1,7 @@
 package com.example.instagramcclone.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.instagramcclone.CommentActivity;
 import com.example.instagramcclone.Model.Post;
 import com.example.instagramcclone.Model.User;
 import com.example.instagramcclone.R;
@@ -72,7 +74,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
             isLiked(post.getPostid(),holder.like);       //calling isliked method to check where the post is liked or not
         noOFLIKes(post.getPostid(),holder.noOfLikes);           //calling nooflikes method to check how many likes are there in tthe post
-
+getcommentst(post.getPostid(),holder.noofcomments);
         //FOr the like button which change on clikc and turns out red.
         holder.like.setOnClickListener(new View.OnClickListener() {
 
@@ -84,6 +86,27 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 } else {
                     FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostid()).child(firebaseUser.getUid()).removeValue();
                 }
+
+            }
+        });
+        holder.comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(mcontext, CommentActivity.class);
+                intent.putExtra("postid",post.getPostid());
+                intent.putExtra("authorid",post.getPublisher());
+                mcontext.startActivity(intent);
+
+
+            }
+        });
+        holder.noofcomments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(mcontext, CommentActivity.class);
+                intent.putExtra("postid",post.getPostid());
+                intent.putExtra("authorid",post.getPublisher());
+                mcontext.startActivity(intent);
 
             }
         });
@@ -155,6 +178,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         });
     }
     //NOfolikes counting method completed/////////************************?
+
+    private void getcommentst(String postId,TextView textView)
+    {
+        FirebaseDatabase.getInstance().getReference().child("Comments").child(postId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                textView.setText("View All "+snapshot.getChildrenCount()+" Comments");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
 
 }
