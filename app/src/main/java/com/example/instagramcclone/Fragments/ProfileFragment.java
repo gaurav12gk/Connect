@@ -1,5 +1,6 @@
 package com.example.instagramcclone.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment {
     private CircleImageView imageprofile;
     private ImageView options, myPictures, savedPictures;
+    private Button editproFile;
     private TextView followers, following, posts, fullname, bio, username;
 
     private FirebaseUser fUser;
@@ -39,9 +42,15 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         fUser = FirebaseAuth.getInstance().getCurrentUser();
+        String data=getContext().getSharedPreferences("PPROFILE", Context.MODE_PRIVATE).getString("profileId","none");
+        if(data.equals("none"))
         profileId = fUser.getUid();
+        else {
+            profileId=data;
+        }
         imageprofile = view.findViewById(R.id.image_profile_profiletab);
         options = view.findViewById(R.id.options);
+        editproFile=view.findViewById(R.id.edit_profile);
         myPictures = view.findViewById(R.id.my_pictures);
         savedPictures = view.findViewById(R.id.saved_pictures);
         followers = view.findViewById(R.id.followers_profile);
@@ -50,10 +59,63 @@ public class ProfileFragment extends Fragment {
         fullname = view.findViewById(R.id.fullname_profile);
         bio = view.findViewById(R.id.bio);
         username = view.findViewById(R.id.username_profile);
+
         userInfo();
         getfollowerAndFollowingCount();
         getPostCount();
+        if(profileId.equals(fUser.getUid()))
+        {
+            editproFile.setText("Edit Profile");
+        }
+        else{
+            checkfollowingStatus();
+        }
+      editproFile.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              String btntext=editproFile.getText().toString();
+              if(btntext.equals("Edit Profile")) {
+                  //GOTO the edit profile where you can add the bio and other items;
+              }
+                  else{
+                      if(btntext.equals("Follow")){
+                          FirebaseDatabase.getInstance().getReference().child("Follow").child(fUser.getUid()).child("following").child(profileId)
+                                  .setValue(true);
+                          FirebaseDatabase.getInstance().getReference().child("Follow").child(profileId).child("followers").child(fUser.getUid())
+                                  .setValue(true);
+
+                      }
+                      else{
+                          FirebaseDatabase.getInstance().getReference().child("Follow").child(fUser.getUid()).child("following").child(profileId)
+                                  .removeValue();
+                          FirebaseDatabase.getInstance().getReference().child("Follow").child(profileId).child("followers").child(fUser.getUid())
+                                  .removeValue();
+                      }
+              }
+
+          }
+      });
         return view;
+    }
+
+    private void checkfollowingStatus() {
+   FirebaseDatabase.getInstance().getReference().child("Follow").child(fUser.getUid()).child("following").addValueEventListener(new ValueEventListener() {
+       @Override
+       public void onDataChange(@NonNull DataSnapshot snapshot) {
+          if(snapshot.child(profileId).exists())
+          {
+              editproFile.setText("Following");
+          }
+          else {
+              editproFile.setText("Follow");
+          }
+       }
+
+       @Override
+       public void onCancelled(@NonNull DatabaseError error) {
+
+       }
+   });
     }
 
     private void getPostCount() {
@@ -99,8 +161,7 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+   }
         });
     }
 

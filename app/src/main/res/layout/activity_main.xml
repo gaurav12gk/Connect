@@ -10,25 +10,23 @@
         android:id="@+id/fragmentactivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom"/>
+        android:layout_above="@+id/bottom" />
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-            android:id="@+id/bottom"
         android:layout_alignParentBottom="true">
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomnav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-android:id="@+id/bottomnav"
-            app:itemIconTint="@color/selector"
             android:background="?android:attr/windowBackground"
-            app:menu="@menu/bottom_menu"
+            app:itemIconTint="@color/selector"
             app:labelVisibilityMode="unlabeled"
-            />
+            app:menu="@menu/bottom_menu" />
     </com.google.android.material.appbar.AppBarLayout>
-
-
 
 
 </RelativeLayout>

@@ -1,113 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
         android:id="@+id/more"
-        android:src="@drawable/more"
-        android:layout_alignParentEnd="true"/>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="5dp"
-        android:id="@+id/profile_image_home_fragment_postiem"/>
-    <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="@color/teal_700"
-        android:id="@+id/username_post_item_home_fragment"
-        android:layout_margin="5dp"/>
-</LinearLayout>
-<!--  NOW Designing the post recycler view where user can see the others post and the post which he uploaded  -->
-   <androidx.constraintlayout.widget.ConstraintLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
+        android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
+        android:src="@drawable/more" />
 
-       <ImageView
-           android:id="@+id/post_image"
-           android:layout_width="match_parent"
-           android:layout_height="0dp"
-           app:layout_constraintDimensionRatio="1:1"
-           xmlns:tools="http://schemas.android.com/tools"
-           tools:ignore="MissingConstraints"
-           />
-
-   </androidx.constraintlayout.widget.ConstraintLayout>
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/like_post"
-            android:src="@drawable/ic_like"/>
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/commen_post"
-            android:layout_toEndOf="@+id/like_post"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image_home_fragment_postiem"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/username_post_item_home_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:textColor="@color/teal_700"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <!--  NOW Designing the post recycler view where user can see the others post and the post which he uploaded  -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/post_image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/like_post"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_like" />
+
+            <ImageView
+                android:id="@+id/commen_post"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/like_post"
+                android:src="@drawable/ic_chat" />
+
+            <ImageView
+                android:id="@+id/save_post"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_turnedinnot" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/nooflikes"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:src="@drawable/ic_chat"/>
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/save_post"
-            android:src="@drawable/ic_turnedinnot"
-            android:layout_alignParentEnd="true"/>
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
 
-    </RelativeLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorAccent"
-        android:id="@+id/nooflikes"
-        android:layout_marginStart="10dp"
-        android:textStyle="bold"
-       style="@style/TextAppearance.MaterialComponents.Caption"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/teal_700"
-        android:id="@+id/author"
-        android:layout_marginStart="10dp"
-        android:textStyle="bold"
-        style="@style/TextAppearance.MaterialComponents.Body2"
-        android:fontFamily="monospace"
-        />
-<com.hendraanggrian.appcompat.widget.SocialTextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:id="@+id/postdescription"
-    android:layout_marginTop="5dp"
-    android:textColor="@color/colorAccent"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/noofcomments"
-        android:layout_marginTop="3dp"
-        android:layout_marginStart="10dp"
-        android:textColor="@color/design_default_color_primary"
-        android:layout_marginBottom="5dp"/>
+        <TextView
+            android:id="@+id/author"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="monospace"
+            android:textColor="@color/teal_700"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <com.hendraanggrian.appcompat.widget.SocialTextView
+            android:id="@+id/postdescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/noofcomments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/design_default_color_primary" />
+
+    </LinearLayout>
 </RelativeLayout>

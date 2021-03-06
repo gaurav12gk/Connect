@@ -1,6 +1,7 @@
 package com.example.instagramcclone.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.instagramcclone.MainActivity;
 import com.example.instagramcclone.Model.Comment;
 import com.example.instagramcclone.Model.User;
 import com.example.instagramcclone.R;
@@ -62,6 +64,26 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        holder.comments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mCOntext, MainActivity.class);
+                intent.putExtra("publisherId",comment.getPublisher());
+                mCOntext.startActivity(intent);
+
+            }
+        });
+
+        holder.imageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(mCOntext, MainActivity.class);
+                intent.putExtra("publisherId",comment.getPublisher());
+                mCOntext.startActivity(intent);
 
             }
         });
