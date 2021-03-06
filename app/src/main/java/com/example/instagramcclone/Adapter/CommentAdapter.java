@@ -46,10 +46,10 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         Comment comment=mCommmnts.get(position);
-        holder.comment.setText(comment.getComment());
+        holder.comments.setText(comment.getComments());
        //Now we need the user for that we have to extract the user from the User branch in the
         //          firebase database
-        FirebaseDatabase.getInstance().getReference().child("User").child(comment.getPublisher()).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Users").child(comment.getPublisher()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
@@ -75,13 +75,13 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
         public CircleImageView imageProfile;
         public TextView username;
-        public TextView comment;
+        public TextView comments;
         public ViewHolder(@NonNull View itemView) {
 
             super(itemView);
             imageProfile=itemView.findViewById(R.id.image_porfile);
             username=itemView.findViewById(R.id.username_incomment);
-            comment=itemView.findViewById(R.id.commenting_text);
+            comments=itemView.findViewById(R.id.commenting_text);
         }
     }
 }

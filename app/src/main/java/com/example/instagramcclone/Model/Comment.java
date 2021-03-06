@@ -1,23 +1,22 @@
 package com.example.instagramcclone.Model;
 
 public class Comment {
-    private String comment,publisher;
+    private String comments,publisher;
 
     public Comment() {
     }
 
-    public Comment(String comment, String publisher) {
-        this.comment = comment;
+    public Comment(String comments, String publisher) {
+        this.comments = comments;
         this.publisher = publisher;
-
     }
 
-    public String getComment() {
-        return comment;
+    public String getComments() {
+        return comments;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
     public String getPublisher() {
