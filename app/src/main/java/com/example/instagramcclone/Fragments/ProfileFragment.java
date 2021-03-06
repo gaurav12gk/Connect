@@ -141,7 +141,7 @@ public class ProfileFragment extends Fragment {
 
     private void getfollowerAndFollowingCount() {
         DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("Follow").child(profileId);
-        ref.child("followers").addValueEventListener(new ValueEventListener() {
+        ref.child("follower").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 followers.setText(""+snapshot.getChildrenCount());
