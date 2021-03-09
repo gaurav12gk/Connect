@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -72,9 +71,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
 
-            isLiked(post.getPostid(),holder.like);       //calling isliked method to check where the post is liked or not
-        noOFLIKes(post.getPostid(),holder.noOfLikes);           //calling nooflikes method to check how many likes are there in tthe post
-getcommentst(post.getPostid(),holder.noofcomments);
+        isLiked(post.getPostid(), holder.like);       //calling isliked method to check where the post is liked or not
+        noOFLIKes(post.getPostid(), holder.noOfLikes);           //calling nooflikes method to check how many likes are there in tthe post
+        getcommentst(post.getPostid(), holder.noofcomments);
+        isSaved(post.getPostid(), holder.save);
         //FOr the like button which change on clikc and turns out red.
         holder.like.setOnClickListener(new View.OnClickListener() {
 
@@ -92,9 +92,9 @@ getcommentst(post.getPostid(),holder.noofcomments);
         holder.comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(mcontext, CommentActivity.class);
-                intent.putExtra("postid",post.getPostid());
-                intent.putExtra("authorid",post.getPublisher());
+                Intent intent = new Intent(mcontext, CommentActivity.class);
+                intent.putExtra("postid", post.getPostid());
+                intent.putExtra("authorid", post.getPublisher());
                 mcontext.startActivity(intent);
 
 
@@ -103,13 +103,50 @@ getcommentst(post.getPostid(),holder.noofcomments);
         holder.noofcomments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(mcontext, CommentActivity.class);
-                intent.putExtra("postid",post.getPostid());
-                intent.putExtra("authorid",post.getPublisher());
+                Intent intent = new Intent(mcontext, CommentActivity.class);
+                intent.putExtra("postid", post.getPostid());
+                intent.putExtra("authorid", post.getPublisher());
                 mcontext.startActivity(intent);
 
             }
         });
+        holder.save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.save.getTag().equals("save")) {
+                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid()).child(post.getPostid()).setValue(true);
+                } else {
+                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid()).child(post.getPostid()).removeValue();
+
+
+                }
+            }
+        });
+    }
+
+    private void isSaved(String postid, ImageView image) {
+        FirebaseDatabase.getInstance().getReference().child("Saves").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+        if(snapshot.child(postid).exists())
+        {
+            image.setImageResource(R.drawable.ic_bookmark);
+            image.setTag("saved");
+
+        }
+        else{
+            image.setImageResource(R.drawable.ic_turnedinnot);
+            image.setTag("save");
+
+        }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     @Override
@@ -139,7 +176,7 @@ getcommentst(post.getPostid(),holder.noofcomments);
     }
 
     public void isLiked(String postid, ImageView imageView) {
-      //  Toast.makeText(mcontext, "You cliked", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(mcontext, "You cliked", Toast.LENGTH_SHORT).show();
         FirebaseDatabase.getInstance().getReference().child("Likes").child(postid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -162,12 +199,11 @@ getcommentst(post.getPostid(),holder.noofcomments);
     //Isliked method finished
 
     //method for the no of likes counting
-    private  void noOFLIKes(String postid,TextView textView)
-    {
+    private void noOFLIKes(String postid, TextView textView) {
         FirebaseDatabase.getInstance().getReference().child("Likes").child(postid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                textView.setText(snapshot.getChildrenCount()+" likes");     //snapshot.getchildrencount() get the number of users who likes the post
+                textView.setText(snapshot.getChildrenCount() + " likes");     //snapshot.getchildrencount() get the number of users who likes the post
 
             }
 
@@ -179,12 +215,11 @@ getcommentst(post.getPostid(),holder.noofcomments);
     }
     //NOfolikes counting method completed/////////************************?
 
-    private void getcommentst(String postId,TextView textView)
-    {
+    private void getcommentst(String postId, TextView textView) {
         FirebaseDatabase.getInstance().getReference().child("Comments").child(postId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                textView.setText("View All "+snapshot.getChildrenCount()+" Comments");
+                textView.setText("View All " + snapshot.getChildrenCount() + " Comments");
             }
 
             @Override
