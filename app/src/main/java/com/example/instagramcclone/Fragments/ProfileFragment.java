@@ -5,14 +5,19 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.instagramcclone.Adapter.PhotoAdapter;
 import com.example.instagramcclone.Model.Post;
 import com.example.instagramcclone.Model.User;
 import com.example.instagramcclone.R;
@@ -25,6 +30,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -33,7 +43,9 @@ public class ProfileFragment extends Fragment {
     private ImageView options, myPictures, savedPictures;
     private Button editproFile;
     private TextView followers, following, posts, fullname, bio, username;
-
+    private RecyclerView recyclerViewpostss;
+    private PhotoAdapter photoAdapter;
+    private List<Post> myPhotoList;
     private FirebaseUser fUser;
     String profileId;
 
@@ -42,7 +54,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         fUser = FirebaseAuth.getInstance().getCurrentUser();
-        String data=getContext().getSharedPreferences("PPROFILE", Context.MODE_PRIVATE).getString("profileId","none");
+        String data=getContext().getSharedPreferences("PROFILE", Context.MODE_PRIVATE).getString("profileId","none");
         if(data.equals("none"))
         profileId = fUser.getUid();
         else {
@@ -60,9 +72,20 @@ public class ProfileFragment extends Fragment {
         bio = view.findViewById(R.id.bio);
         username = view.findViewById(R.id.username_profile);
 
+        recyclerViewpostss=view.findViewById(R.id.recucler_view_pictures_profile);
+        recyclerViewpostss.setHasFixedSize(true);
+        recyclerViewpostss.setLayoutManager(new GridLayoutManager(getContext(),3));
+
+        myPhotoList=new ArrayList<>();
+        photoAdapter=new PhotoAdapter(getContext(),myPhotoList);
+
         userInfo();
         getfollowerAndFollowingCount();
         getPostCount();
+        myPhotos();
+        recyclerViewpostss.setAdapter(photoAdapter);
+        Log.d("dfd", "onCreateView:hello");
+
         if(profileId.equals(fUser.getUid()))
         {
             editproFile.setText("Edit Profile");
@@ -96,6 +119,31 @@ public class ProfileFragment extends Fragment {
           }
       });
         return view;
+    }
+
+    private void myPhotos() {
+   FirebaseDatabase.getInstance().getReference().child("Post").addValueEventListener(new ValueEventListener() {
+       @Override
+       public void onDataChange(@NonNull DataSnapshot snapshot) {
+           myPhotoList.clear();
+           for(DataSnapshot snapshot1: snapshot.getChildren()){
+               Post post=snapshot1.getValue(Post.class);
+              if(post.getPublisher().equals(profileId)){
+                   myPhotoList.add(post);
+               }
+               Log.d("publisher", "onDataChange: "+post.getPostid());
+           }
+
+           Collections.reverse(myPhotoList);
+photoAdapter.notifyDataSetChanged();
+       }
+
+       @Override
+       public void onCancelled(@NonNull DatabaseError error) {
+
+       }
+   });
+
     }
 
     private void checkfollowingStatus() {
