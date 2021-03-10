@@ -1,6 +1,7 @@
 package com.example.instagramcclone.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.instagramcclone.Adapter.PhotoAdapter;
+import com.example.instagramcclone.EditProfileActivity;
 import com.example.instagramcclone.Model.Post;
 import com.example.instagramcclone.Model.User;
 import com.example.instagramcclone.R;
@@ -57,12 +59,16 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         fUser = FirebaseAuth.getInstance().getCurrentUser();
-        String data = getContext().getSharedPreferences("PROFILE", Context.MODE_PRIVATE).getString("profileId", "none");
-        if (data.equals("none"))
+        String data = getContext().getSharedPreferences("PR", Context.MODE_PRIVATE).getString("profileId", "none");
+        if (data.equals("none")) {
             profileId = fUser.getUid();
-        else {
+        }else {
             profileId = data;
+
         }
+        Log.d("Game", "onCreateView:"+data);
+
+        Log.d("Game", "onCreateView:"+data);
 
         imageprofile = view.findViewById(R.id.image_profile_profiletab);
         options = view.findViewById(R.id.options);
@@ -107,7 +113,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 String btntext = editproFile.getText().toString();
                 if (btntext.equals("Edit Profile")) {
-                    //GOTO the edit profile where you can add the bio and other items;
+                    startActivity(new Intent(getContext(), EditProfileActivity.class));
                 } else {
                     if (btntext.equals("Follow")) {
                         FirebaseDatabase.getInstance().getReference().child("Follow").child(fUser.getUid()).child("following").child(profileId)
@@ -148,6 +154,12 @@ public class ProfileFragment extends Fragment {
 
     }
 
+    @Override
+    public void onDestroy() {
+        getContext().deleteSharedPreferences("PROFILE");
+        super.onDestroy();
+    }
+
     private void getsavedPhotos() {
 
         List<String> savedIds = new ArrayList<>();
@@ -157,7 +169,7 @@ public class ProfileFragment extends Fragment {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                     savedIds.add(snapshot1.getKey());
                 }
-                FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener(new ValueEventListener() {
+                FirebaseDatabase.getInstance().getReference().child("Post").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         savedpostlist.clear();

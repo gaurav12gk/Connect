@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle intent = getIntent().getExtras();
         if (intent != null) {
             String profileId = intent.getString("publisherId");
-            getSharedPreferences("PROFILE", MODE_PRIVATE).edit().putString("profileId", profileId).apply();
+            getSharedPreferences("PR", MODE_PRIVATE).edit().putString("profileId", profileId).apply();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentactivity, new ProfileFragment()).commit();
             bottomNavigationView.setSelectedItemId(R.id.navpersons);
         } else {
