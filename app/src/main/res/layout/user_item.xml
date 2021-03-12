@@ -19,13 +19,12 @@
         android:id="@+id/image_profile">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/usernameitemusr"
-            android:maxLines="1"
-            android:textStyle="bold"
+            android:layout_width="231dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
             android:textColor="@color/design_default_color_primary_dark"
-            android:text="username"/>
+            android:textStyle="bold" />
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,6 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button_follow"
+        android:gravity="center"
         android:layout_alignParentEnd="true"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_centerVertical="true"

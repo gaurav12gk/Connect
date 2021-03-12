@@ -81,6 +81,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
+
             android:hint="Full Name"
             android:layout_height="wrap_content"
              android:layout_margin="10dp">
