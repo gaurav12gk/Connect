@@ -64,6 +64,7 @@ public class ProfileFragment extends Fragment {
             profileId = fUser.getUid();
         }else {
             profileId = data;
+            getContext().getSharedPreferences("PR",Context.MODE_PRIVATE).edit().clear().commit();
 
         }
         Log.d("Game", "onCreateView:"+data);
