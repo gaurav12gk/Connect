@@ -29,6 +29,7 @@ import com.hendraanggrian.appcompat.widget.SocialTextView;
 import com.squareup.picasso.Picasso;
 
 import java.security.PrivateKey;
+import java.util.HashMap;
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
@@ -81,18 +82,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         getcommentst(post.getPostid(), holder.noofcomments);
         isSaved(post.getPostid(), holder.save);
         //FOr the like button which change on clikc and turns out red.
-        holder.like.setOnClickListener(new View.OnClickListener() {
+        holder.like.setOnClickListener(v -> {
 
-            @Override
-            public void onClick(View v) {
-                if (holder.like.getTag().equals("like")) {       //if button is not red or you didn't like the image then on database a new branch inlikes is created where we get the datat
-                    FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostid()).child(firebaseUser.getUid()).setValue(true);
+            if (holder.like.getTag().equals("like")) {       //if button is not red or you didn't like the image then on database a new branch inlikes is created where we get the datat
+                FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostid())
+                        .child(firebaseUser.getUid()).setValue(true);
 
-                } else {
-                    FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostid()).child(firebaseUser.getUid()).removeValue();
-                }
+                addNotification(post.getPostid(),post.getPublisher());
 
+            } else {
+                FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostid()).child(firebaseUser.getUid()).removeValue();
             }
+
         });
         holder.comment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,6 +165,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
 
+    }
+
+    private void addNotification(String postid, String publisher) {
+
+        HashMap<String,Object> map =new HashMap<>();
+        map.put("userid",publisher);
+        map.put("text","liked your post.");
+        map.put("postid",postid);
+        map.put("isPost",true);
+        FirebaseDatabase.getInstance().getReference().child("Notification").child(firebaseUser.getUid()).push()
+                .setValue(map);
     }
 
     private void isSaved(String postid, ImageView image) {

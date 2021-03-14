@@ -39,7 +39,7 @@ public class Notification {
         this.postid = postid;
     }
 
-    public boolean isPost() {
+    public boolean   isPost() {
         return isPost;
     }
 

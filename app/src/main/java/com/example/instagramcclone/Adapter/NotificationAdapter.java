@@ -46,6 +46,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Notification notification = mNotification.get(position);
         getUser(holder.imageProfile, holder.username, notification.getUserid());
+        holder.comment.setText(notification.getText());
         if (notification.isPost()) {
             holder.postImage.setVisibility(View.VISIBLE);
             getpostIMage(holder.postImage, notification.getPostid());
@@ -56,7 +57,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             @Override
             public void onClick(View v) {
                 if (notification.isPost()) {
-                    mcontext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit()
+                    mcontext.getSharedPreferences("PR", Context.MODE_PRIVATE).edit()
                             .putString("postid", notification.getPostid()).apply();
                     ((FragmentActivity) mcontext).getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragmentactivity, new PostDetailFragment()).commit();
