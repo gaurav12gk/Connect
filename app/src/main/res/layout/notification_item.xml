@@ -7,34 +7,32 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_profile_notification"
         android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_centerVertical="true"
+        android:layout_height="40dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginStart="5dp"
+        android:layout_toStartOf="@+id/post_image_notification"
         android:layout_toEndOf="@+id/image_profile_notification">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/username_notification"
             android:textStyle="bold"
-            android:textColor="@color/design_default_color_primary_dark"
-            android:text="Gaurav Kandpal"/>
+            android:textColor="@color/design_default_color_primary_dark" />
 
         <TextView
             android:id="@+id/comment_notification"
-            android:layout_width="318dp"
-            android:layout_height="wrap_content"
-            android:text="Hello i like your comment what about you are you not gonna lke mine" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@mipmap/ic_launcher"
         android:id="@+id/post_image_notification"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"/>
