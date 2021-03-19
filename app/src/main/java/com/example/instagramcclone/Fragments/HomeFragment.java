@@ -50,6 +50,7 @@ public class HomeFragment extends Fragment {
 
       return view; }
 
+
     private void checkFollowinUsers() {
         FirebaseDatabase.getInstance().getReference().child("Follow").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("following").addValueEventListener(new ValueEventListener() {

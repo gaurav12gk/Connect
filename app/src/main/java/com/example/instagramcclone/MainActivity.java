@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.navsearch:
                         selectorfragment = new SearchFragment();
+
                         break;
                     case R.id.navpersons:
                         selectorfragment = new ProfileFragment();
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navadd:
                         selectorfragment = null;
                         startActivity(new Intent(MainActivity.this, PostActivity.class));
+
                         break;
                 }
                 if (selectorfragment != null) {
