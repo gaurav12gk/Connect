@@ -67,9 +67,6 @@ public class ProfileFragment extends Fragment {
             getContext().getSharedPreferences("PR",Context.MODE_PRIVATE).edit().clear().commit();
 
         }
-        Log.d("Game", "onCreateView:"+data);
-
-        Log.d("Game", "onCreateView:"+data);
 
         imageprofile = view.findViewById(R.id.image_profile_profiletab);
         options = view.findViewById(R.id.options);
@@ -117,12 +114,14 @@ public class ProfileFragment extends Fragment {
                     startActivity(new Intent(getContext(), EditProfileActivity.class));
                 } else {
                     if (btntext.equals("Follow")) {
+                        savedPictures.setVisibility(GONE);
                         FirebaseDatabase.getInstance().getReference().child("Follow").child(fUser.getUid()).child("following").child(profileId)
                                 .setValue(true);
                         FirebaseDatabase.getInstance().getReference().child("Follow").child(profileId).child("followers").child(fUser.getUid())
                                 .setValue(true);
 
                     } else {
+                        savedPictures.setVisibility(GONE);
                         FirebaseDatabase.getInstance().getReference().child("Follow").child(fUser.getUid()).child("following").child(profileId)
                                 .removeValue();
                         FirebaseDatabase.getInstance().getReference().child("Follow").child(profileId).child("followers").child(fUser.getUid())
@@ -132,8 +131,7 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-
-        recyclerViewpostss.setVisibility(View.VISIBLE);
+         recyclerViewpostss.setVisibility(View.VISIBLE);
         recyclerViewsaves.setVisibility(GONE);
         myPictures.setOnClickListener(new View.OnClickListener() {
             @Override

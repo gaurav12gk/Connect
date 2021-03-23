@@ -73,25 +73,19 @@ String postId;
 
             }
         });
-        holder.comments.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(mCOntext, MainActivity.class);
-                intent.putExtra("publisherId",comment.getPublisher());
-                mCOntext.startActivity(intent);
+        holder.comments.setOnClickListener(v -> {
+            Intent intent=new Intent(mCOntext, MainActivity.class);
+            intent.putExtra("publisherId",comment.getPublisher());
+            mCOntext.startActivity(intent);
 
-            }
         });
 
-        holder.imageProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        holder.imageProfile.setOnClickListener(v -> {
 
-                Intent intent=new Intent(mCOntext, MainActivity.class);
-                intent.putExtra("publisherId",comment.getPublisher());
-                mCOntext.startActivity(intent);
+            Intent intent=new Intent(mCOntext, MainActivity.class);
+            intent.putExtra("publisherId",comment.getPublisher());
+            mCOntext.startActivity(intent);
 
-            }
         });
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

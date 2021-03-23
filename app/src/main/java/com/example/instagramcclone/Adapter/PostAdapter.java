@@ -131,8 +131,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.profileimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mcontext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE).edit()
-                        .putString("profileid",post.getPublisher()).apply();
+                mcontext.getSharedPreferences("PR", Context.MODE_PRIVATE).edit()
+                        .putString("profileId",post.getPublisher()).apply();
                 ((FragmentActivity)mcontext).getSupportFragmentManager().beginTransaction().replace(R.id.fragmentactivity,new ProfileFragment())
                         .commit();
             }
@@ -140,8 +140,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.username.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mcontext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE).edit()
-                        .putString("profileid",post.getPublisher()).apply();
+                mcontext.getSharedPreferences("PR", Context.MODE_PRIVATE).edit()
+                        .putString("profileId",post.getPublisher()).apply();
                 ((FragmentActivity)mcontext).getSupportFragmentManager().beginTransaction().replace(R.id.fragmentactivity,new ProfileFragment())
                         .commit();
             }
@@ -149,8 +149,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.author.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mcontext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE).edit()
-                        .putString("profileid",post.getPublisher()).apply();
+                mcontext.getSharedPreferences("PR", Context.MODE_PRIVATE).edit()
+                        .putString("profileId",post.getPublisher()).apply();
                 ((FragmentActivity)mcontext).getSupportFragmentManager().beginTransaction().replace(R.id.fragmentactivity,new ProfileFragment())
                         .commit();
             }

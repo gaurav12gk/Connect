@@ -120,7 +120,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageProfile = itemView.findViewById(R.id.image_profile_notification);
-            postImage = itemView.findViewById(R.id.post_image_notification);
+            postImage = itemView.findViewById(R.id.post_image_notifications);
             username = itemView.findViewById(R.id.username_notification);
             comment = itemView.findViewById(R.id.comment_notification);
 
