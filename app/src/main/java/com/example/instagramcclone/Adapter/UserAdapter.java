@@ -1,6 +1,7 @@
 package com.example.instagramcclone.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.instagramcclone.Fragments.ProfileFragment;
+import com.example.instagramcclone.MainActivity;
 import com.example.instagramcclone.Model.User;
 import com.example.instagramcclone.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -79,6 +83,23 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                             .child(firebaseUser.getUid()).removeValue();
 
 
+                }
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isfragment){
+                    context.getSharedPreferences("PR",Context.MODE_PRIVATE).edit().putString("profileId",user.getID()).apply();
+                    ((FragmentActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragmentactivity,new ProfileFragment())
+                            .commit();
+
+                }
+                else{
+                    Intent intent=new Intent(context, MainActivity.class);
+                    intent.putExtra("publisherId",user.getID());
+                    context.startActivity(intent);
                 }
             }
         });

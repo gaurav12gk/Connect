@@ -97,7 +97,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="monospace"
-            android:textColor="@color/teal_700"
+            android:text="hello"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <com.hendraanggrian.appcompat.widget.SocialTextView
@@ -115,7 +116,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="5dp"
-            android:textColor="@color/design_default_color_primary" />
+            android:textColor="@color/colorAccent" />
 
     </LinearLayout>
 </RelativeLayout>

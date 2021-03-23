@@ -1,6 +1,7 @@
 package com.example.instagramcclone.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,16 +49,18 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         getUser(holder.imageProfile, holder.username, notification.getUserid());
         holder.comment.setText(notification.getText());
         if (notification.isPost()) {
+
+        } else {
             holder.postImage.setVisibility(View.VISIBLE);
             getpostIMage(holder.postImage, notification.getPostid());
-        } else {
-            holder.postImage.setVisibility(View.GONE);
+//           holder.postImage.setVisibility(View.GONE);
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("check", "onClick:"+notification.isPost());
                 if (notification.isPost()) {
-                    mcontext.getSharedPreferences("PR", Context.MODE_PRIVATE).edit()
+                    mcontext.getSharedPreferences("P", Context.MODE_PRIVATE).edit()
                             .putString("postid", notification.getPostid()).apply();
                     ((FragmentActivity) mcontext).getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragmentactivity, new PostDetailFragment()).commit();
@@ -120,7 +123,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageProfile = itemView.findViewById(R.id.image_profile_notification);
-            postImage = itemView.findViewById(R.id.post_image_notifications);
+            postImage = itemView.findViewById(R.id.post_image_notificationss);
             username = itemView.findViewById(R.id.username_notification);
             comment = itemView.findViewById(R.id.comment_notification);
 

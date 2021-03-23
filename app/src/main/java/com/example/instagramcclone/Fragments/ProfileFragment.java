@@ -19,8 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.instagramcclone.Adapter.PhotoAdapter;
 import com.example.instagramcclone.EditProfileActivity;
+import com.example.instagramcclone.FollowerActivity;
 import com.example.instagramcclone.Model.Post;
 import com.example.instagramcclone.Model.User;
+import com.example.instagramcclone.OptionActivity;
 import com.example.instagramcclone.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -148,7 +150,34 @@ public class ProfileFragment extends Fragment {
                 recyclerViewsaves.setVisibility(View.VISIBLE);
             }
         });
+followers.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent= new Intent(getContext(), FollowerActivity.class);
+        intent.putExtra("id",profileId);
+        intent.putExtra("title","followers");
+        startActivity(intent);
 
+    }
+});
+
+        following.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getContext(), FollowerActivity.class);
+                intent.putExtra("id",profileId);
+                intent.putExtra("title","following");
+                startActivity(intent);
+
+            }
+        });
+        options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), OptionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
+            }
+        });
         return view;
 
     }

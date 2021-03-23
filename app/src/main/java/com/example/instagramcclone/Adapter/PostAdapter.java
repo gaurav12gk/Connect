@@ -2,6 +2,7 @@ package com.example.instagramcclone.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.instagramcclone.CommentActivity;
+import com.example.instagramcclone.FollowerActivity;
 import com.example.instagramcclone.Fragments.PostDetailFragment;
 import com.example.instagramcclone.Fragments.ProfileFragment;
 import com.example.instagramcclone.Model.Post;
@@ -164,6 +166,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
             }
         });
+        holder.noOfLikes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(mcontext, FollowerActivity.class);
+                intent.putExtra("id",post.getPostid());
+                intent.putExtra("title","likes");
+                mcontext.startActivity(intent);
+
+            }
+        });
 
     }
 
@@ -199,6 +211,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
             }
         });
+
+
 
     }
 
