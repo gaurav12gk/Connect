@@ -74,8 +74,6 @@ public class FollowerActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.e("gg", "onDataChange:"+id);
-
                 idList.clear();
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                     idList.add(snapshot1.getKey());
