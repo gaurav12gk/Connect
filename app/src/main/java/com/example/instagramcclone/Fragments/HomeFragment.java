@@ -7,11 +7,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.instagramcclone.Adapter.PostAdapter;
+import com.example.instagramcclone.MainActivity;
 import com.example.instagramcclone.Model.Post;
 import com.example.instagramcclone.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,7 +43,8 @@ public class HomeFragment extends Fragment {
       linearLayoutManager.setReverseLayout(true);
       recyclerViewpost.setLayoutManager(linearLayoutManager);
       postlist=new ArrayList<>();
-      postAdapter=new PostAdapter(getContext(),postlist);
+
+      postAdapter=new PostAdapter(getContext(),postlist, ((MainActivity) getActivity()).deviceWidth);
       recyclerViewpost.setAdapter(postAdapter);
       followinglist=new ArrayList<>();
 

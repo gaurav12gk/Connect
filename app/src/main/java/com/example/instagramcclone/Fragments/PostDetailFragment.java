@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.instagramcclone.Adapter.PostAdapter;
+import com.example.instagramcclone.MainActivity;
 import com.example.instagramcclone.Model.Post;
 import com.example.instagramcclone.R;
 import com.google.firebase.database.DataSnapshot;
@@ -45,7 +46,7 @@ private List<Post>  postlist;
 
         //defining the post list
         postlist=new ArrayList<>();
-        postAdapter=new PostAdapter(getContext(),postlist);
+        postAdapter=new PostAdapter(getContext(), postlist, ((MainActivity) getActivity()).deviceWidth);
         recyclerView.setAdapter(postAdapter);    //settting the adapter to the recycler view
 
 

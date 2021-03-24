@@ -2,11 +2,14 @@ package com.example.instagramcclone.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,10 +41,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     private Context mcontext;
     private List<Post> mPosts;
     private FirebaseUser firebaseUser;
+    int deviceWidth;
 
-    public PostAdapter(Context mcontext, List<Post> mPosts) {
+    public PostAdapter(Context mcontext, List<Post> mPosts, int deviceWidth) {
         this.mcontext = mcontext;
         this.mPosts = mPosts;
+        this.deviceWidth = deviceWidth;
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
@@ -157,14 +162,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                         .commit();
             }
         });
-        holder.postimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mcontext.getSharedPreferences("P",Context.MODE_PRIVATE).edit().putString("postId",post.getPostid()).apply();
-                ((FragmentActivity)mcontext).getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragmentactivity,new PostDetailFragment()).commit();
+        holder.postimage.setOnClickListener(v -> {
+            mcontext.getSharedPreferences("P",Context.MODE_PRIVATE).edit().putString("postId",post.getPostid()).apply();
+            ((FragmentActivity)mcontext).getSupportFragmentManager().beginTransaction().
+                    replace(R.id.fragmentactivity,new PostDetailFragment()).commit();
 
-            }
         });
         holder.noOfLikes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,6 +241,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             author = itemView.findViewById(R.id.author);
             noofcomments = itemView.findViewById(R.id.noofcomments);
             description = itemView.findViewById(R.id.postdescription);
+            postimage.getLayoutParams().height = deviceWidth;
         }
     }
 

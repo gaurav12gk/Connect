@@ -4,6 +4,8 @@ package com.example.instagramcclone;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -19,6 +21,12 @@ public class StartActivity extends AppCompatActivity {
     private ImageView logo,icon;
     private LinearLayout linearLayout;
     private FirebaseUser auth;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("devdevdev", "startactivty resume called");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +51,7 @@ public class StartActivity extends AppCompatActivity {
  {
      startActivity(new Intent(StartActivity.this,MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
  }
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(StartActivity.this,LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
-            }
-        });
+        login.setOnClickListener(v -> startActivity(new Intent(StartActivity.this,LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP)));
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,4 +88,5 @@ public class StartActivity extends AppCompatActivity {
         finish();
         moveTaskToBack(true);
     }
+
 }

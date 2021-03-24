@@ -45,20 +45,12 @@ private  String imageurl;
         imageadded=findViewById(R.id.imageadded);
         post=findViewById(R.id.post);
         description=findViewById(R.id.description);
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(PostActivity.this,MainActivity.class));
-                finish();
-            }
+        close.setOnClickListener(v -> {
+            startActivity(new Intent(PostActivity.this,MainActivity.class));
+            finish();
         });
 
-        post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                upload();
-            }
-        });
+        post.setOnClickListener(v -> upload());
         CropImage.activity().start(PostActivity.this);
 
     }

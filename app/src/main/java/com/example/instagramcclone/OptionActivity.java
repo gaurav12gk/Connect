@@ -2,6 +2,7 @@ package com.example.instagramcclone;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.View;
 import android.widget.TextView;
@@ -26,25 +27,15 @@ public class OptionActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Options");
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(OptionActivity.this, StartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                finish();
-            }
+        toolbar.setNavigationOnClickListener(v -> finish());
+        logout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(OptionActivity.this, StartActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
         });
     }
 
-    @Override
-    public void onActionModeFinished(ActionMode mode) {
-        finish();
-        super.onActionModeFinished(mode);
-    }
+
 }
