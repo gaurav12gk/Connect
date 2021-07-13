@@ -1,19 +1,18 @@
 package com.example.instagramcclone;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.instagramcclone.Adapter.CommentAdapter;
 import com.example.instagramcclone.Model.Comment;
@@ -29,7 +28,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.security.interfaces.DSAKey;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,48 +38,48 @@ public class CommentActivity extends AppCompatActivity {
     private RecyclerView recyclerViewcomment;
     private CommentAdapter commentAdapter;
     private List<Comment> commentList;
- private EditText addComment;
- private CircleImageView imageprofile;
- private TextView postComment;
+    private EditText addComment;
+    private CircleImageView imageprofile;
+    private TextView postComment;
 
- private String postId;
- private String authorId;
- FirebaseUser fUser;
+    private String postId;
+    private String authorId;
+    FirebaseUser fUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
 
-        Toolbar toolbar=findViewById(R.id.toolbar_comment);
-        if(toolbar!=null) {
+        Toolbar toolbar = findViewById(R.id.toolbar_comment);
+        if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setTitle("Comments");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         toolbar.setNavigationOnClickListener(v -> finish());
-        Intent intent=  getIntent();
-        postId=intent.getStringExtra("postid");
-        authorId=intent.getStringExtra("authorid");
-        addComment=findViewById(R.id.addacomment);
-        imageprofile=findViewById(R.id.image_profile_comment);
-        postComment=findViewById(R.id.posting_comement);
-        recyclerViewcomment =findViewById(R.id.comments_recycleview);
+        Intent intent = getIntent();
+        postId = intent.getStringExtra("postid");
+        authorId = intent.getStringExtra("authorid");
+        addComment = findViewById(R.id.addacomment);
+        imageprofile = findViewById(R.id.image_profile_comment);
+        postComment = findViewById(R.id.posting_comement);
+        recyclerViewcomment = findViewById(R.id.comments_recycleview);
         recyclerViewcomment.setHasFixedSize(true);
         recyclerViewcomment.setLayoutManager(new LinearLayoutManager(this));
-        commentList=new ArrayList<>();
-        commentAdapter=new CommentAdapter(this,commentList,postId);
+        commentList = new ArrayList<>();
+        commentAdapter = new CommentAdapter(this, commentList, postId);
         recyclerViewcomment.setAdapter(commentAdapter);
 
-        fUser= FirebaseAuth.getInstance().getCurrentUser();
+        fUser = FirebaseAuth.getInstance().getCurrentUser();
         getuserimage();
         postComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(addComment.getText().toString()))
+                if (TextUtils.isEmpty(addComment.getText().toString()))
                     Toast.makeText(CommentActivity.this, "Comment is Empty!", Toast.LENGTH_SHORT).show();
-           else{
-               putcomment();
+                else {
+                    putcomment();
                     addComment.setText(null);
                 }
             }
@@ -96,11 +94,11 @@ public class CommentActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 commentList.clear();
-                for(DataSnapshot snapshot1: snapshot.getChildren())
-                {
-                    Comment comment=snapshot1.getValue(Comment.class);
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    Comment comment = snapshot1.getValue(Comment.class);
                     commentList.add(comment);
-                }commentAdapter.notifyDataSetChanged();
+                }
+                commentAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -111,18 +109,18 @@ public class CommentActivity extends AppCompatActivity {
     }
 
     private void putcomment() {
-        HashMap<String,Object> map=new HashMap<>();
-        DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Comments").child(postId);
-        String id=reference.push().getKey();
-        map.put("id",id);
-        map.put("comments",addComment.getText().toString());
-        map.put("publisher",fUser.getUid());
+        HashMap<String, Object> map = new HashMap<>();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Comments").child(postId);
+        String id = reference.push().getKey();
+        map.put("id", id);
+        map.put("comments", addComment.getText().toString());
+        map.put("publisher", fUser.getUid());
         reference.child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Toast.makeText(CommentActivity.this, "Comment Added!", Toast.LENGTH_SHORT).show();
-                }else
+                } else
                     Toast.makeText(CommentActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -132,9 +130,10 @@ public class CommentActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference().child("Users").child(fUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user=snapshot.getValue(User.class);
-                if(user.getImageurl().equals("default"))imageprofile.setImageResource(R.mipmap.ic_launcher);
-               else Picasso.get().load(user.getImageurl()).into(imageprofile);
+                User user = snapshot.getValue(User.class);
+                if (user.getImageurl().equals("default"))
+                    imageprofile.setImageResource(R.mipmap.ic_launcher);
+                else Picasso.get().load(user.getImageurl()).into(imageprofile);
             }
 
             @Override
