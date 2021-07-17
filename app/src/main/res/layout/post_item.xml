@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_marginBottom="@dimen/space_6"
+    android:layout_height="wrap_content"
+ >
 
     <ImageView
         android:id="@+id/more"
@@ -15,19 +16,20 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image_home_fragment_postiem"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_margin="5dp" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -36,16 +38,18 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
-                android:textColor="@color/teal_700"
-                android:textSize="16sp"
+                android:fontFamily="@font/lato_regular"
+                android:text="gauravji"
+                android:textColor="#ED4A4949"
+                android:textSize="@dimen/text_14"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/post_image"
             android:layout_width="match_parent"
-            android:background="@color/black"
-            android:layout_height="200px"/>
+            android:layout_height="200px"
+            android:background="#474545" />
 
 
         <RelativeLayout
@@ -57,7 +61,8 @@
                 android:id="@+id/like_post"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_like" />
+                android:src="@drawable/like"
+             />
 
             <ImageView
                 android:id="@+id/commen_post"
@@ -72,39 +77,40 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_turnedinnot" />
+                android:src="@drawable/bookmark" />
 
         </RelativeLayout>
 
         <TextView
             android:id="@+id/nooflikes"
-            style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/proxima_nova_bold"
+            android:text="99 Likes"
             android:textColor="@color/colorAccent"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/author"
-            style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:fontFamily="monospace"
-            android:text="hello"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
+            android:visibility="gone"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Hello guys kya kar rhe ho"
+            android:textColor="@color/black" />
 
         <com.hendraanggrian.appcompat.widget.SocialTextView
             android:id="@+id/postdescription"
             android:layout_width="wrap_content"
-            android:maxLines="2"
-
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/colorAccent" />
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/proxima_nova_bold"
+            android:maxLines="2"
+            android:text="Hey guys! Gaurav is Here. I am an Android Developer and i like to createamazing things ."
+            android:textColor="#DA3B373C" />
 
         <TextView
             android:id="@+id/noofcomments"
@@ -112,8 +118,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="3dp"
+            android:fontFamily="@font/proxima_nova_bold"
+            android:text="View all 29 Comments"
             android:layout_marginBottom="5dp"
             android:textColor="@color/colorAccent" />
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black_tr_4"/>
     </LinearLayout>
+
 </RelativeLayout>

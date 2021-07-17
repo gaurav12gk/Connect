@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/maincolor"
     tools:context=".Fragments.ProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -15,7 +17,7 @@
             android:id="@+id/toolbar_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground">
+            android:background="@color/toolbarcolor">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -25,6 +27,7 @@
                     android:id="@+id/username_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
                     android:maxLines="1"
                     android:textColor="@color/design_default_color_primary_dark"
                     android:textSize="18sp"
@@ -35,6 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
                     android:layout_marginEnd="15dp"
                     android:src="@drawable/ic_menu" />
 
@@ -89,6 +93,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:fontFamily="@font/poppins_bold"
                                 android:textColor="@color/design_default_color_primary_dark"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -97,6 +102,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="POSTS"
+                                android:fontFamily="@font/lato_black"
                                 android:textSize="10sp" />
 
                         </LinearLayout>
@@ -112,6 +118,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:fontFamily="@font/poppins_bold"
                                 android:textColor="@color/design_default_color_primary_dark"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -120,6 +127,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="FOLLOWERS"
+                                android:fontFamily="@font/lato_black"
                                 android:textSize="10sp" />
 
                         </LinearLayout>
@@ -134,6 +142,7 @@
                                 android:id="@+id/following_profile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_bold"
                                 android:layout_gravity="center"
                                 android:textColor="@color/design_default_color_primary_dark"
                                 android:textSize="18sp"
@@ -143,19 +152,24 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="FOLLOWING"
+                                android:fontFamily="@font/lato_black"
                                 android:textSize="10sp" />
 
                         </LinearLayout>
 
                     </LinearLayout>
 
-                    <androidx.appcompat.widget.AppCompatButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/edit_profile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:padding="5dp"
-                        android:text="EDIT PROFILE" />
+
+                        app:cornerRadius="@dimen/size_6"
+                        android:textColor="@color/black"
+                        android:backgroundTint="#376E6E6E"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textAllCaps="false"
+                        android:text="Edit Profile" />
 
                 </LinearLayout>
 
@@ -173,12 +187,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
+                    android:fontFamily="@font/proxima_nova_bold"
                     android:textColor="@color/design_default_color_primary_dark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/bio"
+                    android:fontFamily="@font/lato_black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"

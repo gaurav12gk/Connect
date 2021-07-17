@@ -16,15 +16,17 @@
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="@color/maincolor">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomnav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground"
+         app:itemTextColor="@color/selector"
             app:itemIconTint="@color/selector"
-            app:labelVisibilityMode="unlabeled"
+            app:itemRippleColor="@color/bluePrimaryLight"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_menu" />
     </com.google.android.material.appbar.AppBarLayout>
 

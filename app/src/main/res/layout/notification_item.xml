@@ -2,33 +2,38 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_margin="10dp"
-    android:padding="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="@dimen/size_10"
+    android:layout_marginBottom="@dimen/size_10"
+    android:layout_marginLeft="5dp"
+    android:padding="5dp"
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_profile_notification"
-        android:layout_width="40dp"
+        android:layout_width="@dimen/size_32"
         android:layout_centerVertical="true"
-        android:layout_height="40dp" />
+        android:layout_height="@dimen/size_32" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="10dp"
         android:layout_toStartOf="@+id/post_image_notificationss"
         android:layout_toEndOf="@+id/image_profile_notification">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/username_notification"
+            android:fontFamily="@font/proxima_nova_bold"
             android:textStyle="bold"
-            android:textColor="@color/design_default_color_primary_dark" />
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/comment_notification"
             android:layout_width="match_parent"
+            android:fontFamily="@font/proxima_nova_regular"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>

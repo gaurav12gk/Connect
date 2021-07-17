@@ -1,15 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_200">#FF745C</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="color">#FFFFFFFF</color>
-        <color name="description"></color>
+    <color name="maincolor">#42F0E5E5</color>
+<!--    80F3FFE0-->
+    <color name="color">#E80000</color>
+    <color name="description"></color>
+    <color name="toolbarcolor">#8FF3E7E7</color>
+    <color name="colorPrimary">#D0E9FFCF</color>
+    <color name="colorPrimaryDark">#FAF2F3</color>
+    <color name="black_near">#121212</color>
+    <color name="yellow">#ffeb5b</color>
 
-    <color name ="colorAccent">#A5A5A5</color>
+    <color name="bluePrimary">#0066FF</color>
+
+    <color name="bluePrimaryLight">#0d0066FF</color>
+
+    <color name="backPrimary">#FAF2F3</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <color name="black_overlay">#66000000</color>
+
+    <color name="gray">#dcdcdc</color>
+    <color name="dark_gray">#808080</color>
+    <color name="transluscent_gray">#4Df5f5f5</color>
+    <color name="player_control_gray">#0D000000</color>
+
+    <color name="silver">#C0C0C0</color>
+
+
+    <color name="light_gray">#f5f5f5</color>
+
+    <color name="red">#ff5342</color>
+
+    <color name="statusRed">#FF0000</color>
+    <color name="statusGreen">#00FF00</color>
+    <color name="email_passbgcorrect">#F2B8E6FF</color>
+    <color name="black_tr_10">#19000000</color>
+    <color name="black_tr_20">#33000000</color>
+    <color name="black_tr_4">#0a000000</color>
+    <color name="pumpkin_orange">#BEFA944C</color>
+    <color name="icon_dark">@color/black</color>
+    <color name="colorAccent">#A5A5A5</color>
 
 </resources>
