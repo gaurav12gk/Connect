@@ -10,25 +10,16 @@
         android:id="@+id/fragmentactivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom" />
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/bottom"
+        android:layout_above="@+id/chipnaviagation" />
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/maincolor"
+        android:backgroundTintMode="add"
+        android:id="@+id/chipnaviagation"
+        android:layout_alignWithParentIfMissing="true"
         android:layout_alignParentBottom="true"
-        android:background="@color/maincolor">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomnav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-         app:itemTextColor="@color/selector"
-            app:itemIconTint="@color/selector"
-            app:itemRippleColor="@color/bluePrimaryLight"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_menu" />
-    </com.google.android.material.appbar.AppBarLayout>
-
+        app:cnb_menuResource="@menu/bottom_menu"
+        android:padding="@dimen/space_6"/>
 
 </RelativeLayout>

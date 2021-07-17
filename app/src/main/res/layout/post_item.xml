@@ -63,7 +63,14 @@
                 android:layout_height="30dp"
                 android:src="@drawable/like"
              />
-
+            <com.like.LikeButton
+                app:icon_type="heart"
+                app:icon_size="@dimen/space_10"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/commen_post"
+                android:id="@+id/star_button"
+                android:layout_width="30sp"
+                android:layout_height="30sp"/>
             <ImageView
                 android:id="@+id/commen_post"
                 android:layout_width="30dp"

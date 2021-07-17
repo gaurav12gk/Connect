@@ -2,11 +2,11 @@
 <resources>
     <color name="teal_200">#FF745C</color>
     <color name="teal_700">#FF018786</color>
-    <color name="maincolor">#42F0E5E5</color>
+    <color name="maincolor">#1CFFE767</color>
 <!--    80F3FFE0-->
     <color name="color">#E80000</color>
     <color name="description"></color>
-    <color name="toolbarcolor">#8FF3E7E7</color>
+    <color name="toolbarcolor">#7AFFDDB6</color>
     <color name="colorPrimary">#D0E9FFCF</color>
     <color name="colorPrimaryDark">#FAF2F3</color>
     <color name="black_near">#121212</color>

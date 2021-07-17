@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.instagramcclone.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -79,14 +80,15 @@ public class RegisterActivity extends AppCompatActivity {
         auth.createUserWithEmailAndPassword(MMail,ppass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                HashMap<String,Object> map=new HashMap<>();
-                map.put("Name",nname);
-                map.put("Email",MMail);
-                map.put("Username",uuname);
-                map.put("ID",auth.getCurrentUser().getUid());
-                map.put("bio","");
-                map.put("imageurl","default");
-                mrootref.child("Users").child(auth.getCurrentUser().getUid()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                HashMap<String,Object> map=new HashMap<>();
+//                map.put("Name",nname);
+//                map.put("Email",MMail);
+//                map.put("Username",uuname);
+//                map.put("ID",auth.getCurrentUser().getUid());
+//                map.put("bio","");
+//                map.put("imageurl","default");
+                User user=new User(nname,MMail,uuname,"","default",auth.getCurrentUser().getUid());
+                mrootref.child("Users").child(auth.getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful())

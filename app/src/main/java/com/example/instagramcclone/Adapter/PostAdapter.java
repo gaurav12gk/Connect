@@ -31,6 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hendraanggrian.appcompat.widget.SocialTextView;
+import com.like.LikeButton;
 import com.squareup.picasso.Picasso;
 
 import java.security.PrivateKey;
@@ -227,12 +228,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public ImageView postimage, profileimage, like, comment, save, more;
         public TextView username, noOfLikes, author, noofcomments;
         SocialTextView description;
+        LikeButton likeButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             profileimage = itemView.findViewById(R.id.profile_image_home_fragment_postiem);
             postimage = itemView.findViewById(R.id.post_image);
             like = itemView.findViewById(R.id.like_post);
+            likeButton=itemView.findViewById(R.id.star_button);
             comment = itemView.findViewById(R.id.commen_post);
             save = itemView.findViewById(R.id.save_post);
             more = itemView.findViewById(R.id.more);

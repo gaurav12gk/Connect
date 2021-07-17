@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_bold"
             android:background="@android:color/transparent"
             android:hint="Search.."
             android:padding="5dp" />

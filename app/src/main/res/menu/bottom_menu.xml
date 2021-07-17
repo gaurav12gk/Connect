@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 <item android:id="@+id/navhome"
     android:icon="@drawable/home_icon"
     android:iconTint="@color/black"
+    app:cnb_iconColor="@color/bluePrimary"
     android:title="Home"
     />
     <item android:id="@+id/navsearch"
         android:icon="@drawable/search"
+        app:cnb_iconColor="#BEBF0DFF"
         android:iconTint="@color/black"
         android:title="Search"
         />
     <item android:id="@+id/navadd"
     android:icon="@drawable/add_box"
+        app:cnb_iconColor="#00838F"
     android:title="Post"
     />
     <item android:id="@+id/navfavourite"
         android:icon="@drawable/heart"
-        android:title="Update"
+        app:cnb_iconColor="@color/color"
+        android:title="Updates"
         />
     <item android:id="@+id/navpersons"
         android:icon="@drawable/person"
         android:title="Profile"
+         app:cnb_iconColor="@color/pumpkin_orange"
         android:titleCondensed="@string/app_name"
 
         />
